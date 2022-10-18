@@ -147,7 +147,7 @@
             
             
             <h4>Demo</h4>
-                <p> The music pool in the demo was a test-set of the ECLAS dataset. All samples were not used in the training phase. For space reasons, we compare tag, caption and stochastic representations using the contrastive framework.
+                <p> The music pool in the demo was a test-set of the ECALS dataset. All samples were not used in the training phase. For space reasons, we compare tag, caption and stochastic representations using the contrastive framework.
                 </p>
                 <p><strong>The key message of the demo is:</strong> the stochastic model shows robust search performance for tag, caption, and unseen queries. Contrary to this, the caption model has poor search performance for low popular specific instruments, such as banjo. The tag model is difficult to search for combinations in various semantics such as fusion jazz with synth, bass, drums, and saxophone.</p>
                 <hr/>
@@ -256,6 +256,7 @@
             <h4>Motivation</h4>
             The text-music retrieval systems need to cover both tag-based and caption-based queries. 
             For example, ordinary listeners use a single tag-based query to search a wide area in music libraries. Music creators may use caption-based queries to search a specific area in music libraries. 
+            Content creators want music that matches the atmosphere of their media content, such as videos and pictures. Therefore, a content description (less musical context) is used as a query (unseen).
             <img class="blog_contents" src="assets/img/main.png" alt="text_to_music"/> 
             This paper introduces effective design choices of unified multimodal representation learning for text-to-music retrieval. 
             Our reusable idea for framework design choice is as follows: 
@@ -269,6 +270,7 @@
             From our empirical study, we find that there is a strong association between text representation (train stage) and text query types (test stage). 
             As somewhat obviously, the model works better when the input forms during the training phase and test phase are homogeneous, there are no references studying the relationship between text representation and retrieval performance. 
             To use the advantages of both, we propose a stochastic text representation. During the training stage, we select <b>K</b> words from <b>L</b> length text caption. At this time, <b>K</b> is uniformly randomly sampled among integer numbers from <b>1</b> (tag length) to <b>L</b> (caption length). Unlike the dropout method, which determines the length by probability value, stochastic sampling has a dynamic input length.
+            <img class="blog_contents" src="assets/img/sampler.png" alt="framework"/> 
 
             <h4>What is contrastive loss?</h4>
             The core idea of contrastive-based models is to reduce the distance between positive sample pairs while increasing the distance between negative sample pairs. 
@@ -277,6 +279,19 @@
             This is known as multi-modal version of InfoNCE loss.
 
             <img class="blog_contents" src="assets/img/framework.png" alt="framework"/> 
+
+            <h4>Differences from other loss function </h4>
+            <p>
+            We explain the contrastive loss, classification loss, and triplet loss from the viewpoint of representation learning. Text-music representation learning aims to learn each encoder based on the similarity of audio embeddings and text embeddings. 
+            In this case, the classification loss uses a randomly initialized centroid embedding without a text encoder.
+            The classification based model uses the similarity between audio embeddings and centroid embeddings as a prediction score. 
+            The prediction of annotated pair becomes a positive score (maximize), and prediction of un-annotated pair becomes negative score (minimize).
+            However, the predefined centroid vector of classification is not suitable to cover the language, and updating all parameters at every moment is challenging.
+            </p>
+            <p>
+            On the other hand, triplet loss and contrastive loss do not use a fixed class centroid. Because positive and negative are sampled within a batch, learning is possible even if the vocabulary is large enough. Also, in the case of contrastive loss, all examples in the batch except for self are used as negative. This becomes an extreme classification case when the batch size is large enough.
+            </p>
+            <img class="blog_contents" src="assets/img/loss_diff.png" alt="framework"/> 
 
             <h4>Results</h4>
             Table show the tag and caption-based retrieval results. The stochastic representation model achieves competitive results in both tasks. In caption-based retrieval, it outperforms the caption representation model, but in tag-based retrieval, it performs closely to the tag representation model. This is because the dynamic length text representation encompasses both tag and caption embedding space. 
