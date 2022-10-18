@@ -30,7 +30,7 @@
 
         p{
             margin-bottom: 10px;
-            line-height: 1.5;
+            line-height: 1.7;
         }
 
         h1 {
@@ -254,12 +254,16 @@
                 </table>
             <hr/>
             <h4>Motivation</h4>
+            <p>
             The text-music retrieval systems need to cover both tag-based and caption-based queries. 
             For example, ordinary listeners use a single tag-based query to search a wide area in music libraries. Music creators may use caption-based queries to search a specific area in music libraries. 
             Content creators want music that matches the atmosphere of their media content, such as videos and pictures. Therefore, a content description (less musical context) is used as a query (unseen).
+            </p>
             <img class="blog_contents" src="assets/img/main.png" alt="text_to_music"/> 
+            <p>
             This paper introduces effective design choices of unified multimodal representation learning for text-to-music retrieval. 
             Our reusable idea for framework design choice is as follows: 
+            </p>
             <ul>
                 <li>For tags and caption query, use stochastic text representations. </li>
                 <li>For robust to unseen query, use contrastive loss. </a></li>
@@ -267,16 +271,20 @@
             </ul>
             
             <h4>What is stochastic text representations?</h4>
+            <p>
             From our empirical study, we find that there is a strong association between text representation (train stage) and text query types (test stage). 
             As somewhat obviously, the model works better when the input forms during the training phase and test phase are homogeneous, there are no references studying the relationship between text representation and retrieval performance. 
             To use the advantages of both, we propose a stochastic text representation. During the training stage, we select <b>K</b> words from <b>L</b> length text caption. At this time, <b>K</b> is uniformly randomly sampled among integer numbers from <b>1</b> (tag length) to <b>L</b> (caption length). Unlike the dropout method, which determines the length by probability value, stochastic sampling has a dynamic input length.
+            </p>
             <img class="blog_contents" src="assets/img/sampler.png" alt="framework"/> 
 
             <h4>What is contrastive loss?</h4>
+            <p>
             The core idea of contrastive-based models is to reduce the distance between positive sample pairs while increasing the distance between negative sample pairs. 
             Unlike triplet-based models, contrastive-based models can utilize a large number of negative samples that exist in a mini batch <b>N</b>. 
             During training, the audio and text encoders are jointly trained to maximize the similarity between <b>N</b> positive pairs of (music, text) associations while minimizing the similarity for negative pairs. 
             This is known as multi-modal version of InfoNCE loss.
+            </p>
 
             <img class="blog_contents" src="assets/img/framework.png" alt="framework"/> 
 
@@ -294,7 +302,9 @@
             <img class="blog_contents" src="assets/img/loss_diff.png" alt="framework"/> 
 
             <h4>Results</h4>
+            <p>
             Table show the tag and caption-based retrieval results. The stochastic representation model achieves competitive results in both tasks. In caption-based retrieval, it outperforms the caption representation model, but in tag-based retrieval, it performs closely to the tag representation model. This is because the dynamic length text representation encompasses both tag and caption embedding space. 
+            </p>
             <img class="blog_contents" src="assets/img/table.png" alt="table"/> 
 
             <h4>Visualization</h4>
