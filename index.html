@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charSet="UTF-8" />
+        <title>SeungHeon Doh | MIR, ML/DL Researcher</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎹</text></svg>"></link>
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="robots" content="index, follow, noodp" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="google" content="notranslate" />
+        <meta name="format-detection" content="telephone=no" />
+        <title>SeungHeonDoh</title>
+    </head>
+    <style>
+        header{        
+            padding-top: 1.91rem;
+        }
+        header a{
+            color: gray !important;
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "helvetica";
+            margin-bottom: 1.01rem;
+        }
+
+        p{
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            font-size: 5rem;
+            line-height: 1.15;
+            }
+
+        h2 {
+            font-size: 4rem;
+            line-height: 1.11;
+        }
+
+        h3 {
+            font-size: 2rem;
+            line-height: 1.74;
+        }
+
+        h4 {
+            font-size: 1.4rem;
+            line-height: 1.39;
+        }
+
+        h5 {
+            font-size: 1.2rem;
+            line-height: 1.56;
+            margin-bottom: 0.5em;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.56;
+            margin-bottom: 1.01rem;
+        }
+
+        .main table {
+            display: inline-table;
+        }
+        table {
+            table-layout:fixed;
+            width: 100%;
+            overflow: hidden;
+        }
+        #player{
+            width: 100%;
+        }
+        img, svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .blog_contents{
+            margin-bottom: 1rem;
+        }
+
+        .footer{
+            height: 50px;
+            background-color: white;
+        }
+
+        .wrapper {
+            max-width: 1920px;
+            margin: auto;
+            padding-left: 20rem;
+            padding-right: 20rem;
+            }
+        @media(max-width: 1700px){
+            .wrapper {
+                padding-left: 8rem;
+                padding-right: 8rem;
+            }
+            }
+
+        @media(max-width: 1199px){
+            .wrapper {
+            padding-left: 5rem;
+            padding-right: 5rem;
+            }
+        }
+
+        @media(max-width: 575px){
+            .wrapper {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            }
+        }
+    </style>
+
+    <body style="background-color: #f8f8f8;">
+        <header id="header" class="site-header">
+            <div class="wrapper">
+                <a 
+                    title="nav"
+                    class="btn btn-link transform-scale-h border-0 p-0"
+                    href="https://seungheondoh.github.io/#/">Home</a>
+            </div>
+        </header>
+    
+        <main id="main" class="site-main">
+            <div class="wrapper">
+                <h3>Toward unified text-music representation learning</h3>
+                    <pre><code>Toward unified text-music representation learning, ICASSP 2023 (submitted) - SeungHeon Doh, Minz Won, Keunwoo Choi, Juhan Nam
+                    </code></pre>
+            <p>This project maps <strong>text {tag, caption}</strong> and <strong>music</strong> to the same embedding space.
+            The detail of the methodology for building the dataset please refer to our paper.</p>
+            <ul>
+                <li><a href="">Paper on Arxiv</a>(will be updated)</li>
+                <li><a href="">Implementation Code</a></li>
+                <li><a href="">Dataset Code</a></li>
+                <li><a href="">Pre-trained model on Zenodo</a></li>
+                <li><a href="">Dataset split on Zenodo</a></li>
+            </ul>
+            <h4>Abstract</h4>
+                <p>This paper introduces effective design choices of unified multimodal representation learning for text-to-music retrieval. We propose a benchmark that includes ten downstream tasks, carefully review existing approaches through a holistic evaluation, then summarize our findings to deliver reusable insights. We found that tag-level and caption-level text representations are helpful for single-query and multi-query music retrieval, respectively. Thus we leverage both advantages by using a stochastic sampling method. Also, we found that contrastive-based models show more robust performance for unseen query retrieval and probing tasks. Based on these findings, the proposed approach achieves state-of-the-art performance across different music semantic understanding tasks.
+                </p>
+            
+            
+            <h4>Demo</h4>
+                <p> The music pool in the demo was a test-set of the ECLAS dataset and did not participate in training at all. For space reasons, we compare tag representations using the best performing contrastive framework.
+                </p>
+                <p><strong>The key message of the demo is:</strong> the stochastic model shows robust search performance for tag, caption, and unseen queries. Contrary to this, the caption model has poor search performance for low popular specific instruments, such as banjo. The tag model is difficult to search for combinations in various semantics such as fusion jazz with synth, bass, drums, and saxophone.</p>
+                <hr/>
+                <p>Stochastic based Model (Contrastive-BERT-Stochastic)</p>
+                <table>
+                    <tr>
+                        <th> Text Query </th>
+                        <th> Similar Music 1 </th>
+                        <th> Similar Music 2 </th>
+                        <th> Similar Music 3 </th>
+                    </tr>
+                    <tr> 
+                        <th> jazz (tag query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/jazz.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/jazz (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/jazz (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> banjo (tag query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> fusion jazz with synth, bass, </br> drums, saxophone (caption query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/mq.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/mq (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/mq (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> music to meditation or </br> listen to in the forest (unseen query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/zs.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/zs (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/zs (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                </table>
+                <hr/>
+                <p>Caption based Model (Contrastive-BERT-Caption)</p>
+                <table>
+                    <tr>
+                        <th> Text Query </th>
+                        <th> Similar Music 1 </th>
+                        <th> Similar Music 2 </th>
+                        <th> Similar Music 3 </th>
+                    </tr>
+                    <tr> 
+                        <th> jazz (tag query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/jazz.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/jazz (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/jazz (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> banjo (tag query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> fusion jazz with synth, bass, </br> drums, saxophone (caption query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> music to meditation or </br> listen to in the forest (unseen query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/zs.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/zs (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/zs (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                </table>
+                <hr/>
+                <p>Tag based Model (Contrastive-BERT-Tag)</p>
+                <table>
+                    <tr>
+                        <th> Text Query </th>
+                        <th> Similar Music 1 </th>
+                        <th> Similar Music 2 </th>
+                        <th> Similar Music 3 </th>
+                    </tr>
+                    <tr> 
+                        <th> jazz (tag query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/jazz.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/jazz (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/jazz (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> banjo (tag query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> fusion jazz with synth, bass, </br> drums, saxophone (caption query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/mq.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/mq (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/mq (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> music to meditation or </br> listen to in the forest (unseen query) </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/zs.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/zs (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/zs (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                </table>
+            <hr/>
+            <h4>Motivation</h4>
+            The text-music retrieval systems need to cover both tag-based and caption-based queries. 
+            For example, ordinary listeners use a single tag-based query to search a wide area in music libraries. Music creators may use caption-based queries to search a specific area in music libraries. 
+            <img class="blog_contents" src="assets/img/main.png" alt="text_to_music"/> 
+            This paper introduces effective design choices of unified multimodal representation learning for text-to-music retrieval. 
+            Our reusable idea for framework design choice is as follows: 
+            <ul>
+                <li>For tags and caption query, use stochastic text representations. </li>
+                <li>For robust to unseen query, use contrastive loss. </a></li>
+                <li>For caption query (Specifically), use BERT text encoder. </a></li>
+            </ul>
+            
+            <h4>What is stochastic text representations?</h4>
+            From our empirical study, we find that there is a strong association between text representation (train stage) and text query types (test stage). 
+            As somewhat obviously, the model works better when the input forms during the training phase and test phase are homogeneous, there are no references studying the relationship between text representation and retrieval performance. 
+            To use the advantages of both, we propose a stochastic text representation. During the training stage, we select <b>K</b> words from <b>L</b> length text caption. At this time, <b>K</b> is uniformly randomly sampled among integer numbers from <b>1</b> (tag length) to <b>L</b> (caption length). Unlike the dropout method, which determines the length by probability value, stochastic sampling has a dynamic input length.
+
+            <h4>What is contrastive loss?</h4>
+            The core idea of contrastive-based models is to reduce the distance between positive sample pairs while increasing the distance between negative sample pairs. 
+            Unlike triplet-based models, contrastive-based models can utilize a large number of negative samples that exist in a mini batch <b>N</b>. 
+            During training, the audio and text encoders are jointly trained to maximize the similarity between <b>N</b> positive pairs of (music, text) associations while minimizing the similarity for negative pairs. 
+            This is known as multi-modal version of InfoNCE loss.
+
+            <img class="blog_contents" src="assets/img/framework.png" alt="framework"/> 
+
+            <h4>Results</h4>
+            Table show the tag and caption-based retrieval results. The stochastic representation model achieves competitive results in both tasks. In caption-based retrieval, it outperforms the caption representation model, but in tag-based retrieval, it performs closely to the tag representation model. This is because the dynamic length text representation encompasses both tag and caption embedding space. 
+            <img class="blog_contents" src="assets/img/table.png" alt="table"/> 
+
+            <h4>Visualization</h4>
+            <img src="assets/img/viz.png" width="50%" style="float: right;"/>
+            <p>
+                MultiModal embedding spaces are projected to a 2D space using uniform manifold approximation and projection (UMAP). We fit UMAP with music, tag, caption embeddings, then projected all embeddings into the 2D space. For each dataset, 1000 tag-caption pairs and 1054 tags used for evaluation were used.
+                The first row uses a triplet framework with GloVe model. The second row uses a same triplet framework. with BERT model The last row uses a contrastive framework with BERT model. The contrastive model shows a more significant semantic gap than the other models. However, compared with the above results, it is difficult to see the relationship between the semantic gap and performance. Compared with the triplet, the stochastic model shows a smaller semantic gap than other tag and caption models, and we interpret that each modality is mixed up. In the second column, the caption-based model, the interesting part is that tag embeddings are isolated. This supports the example in the table above where caption models showed low performance in tag-based retrieval. Contrary to this, caption and tag are mixed up in tag-based model. However, since tags are a component of caption embedding, we do not assume that the model captures the relationship between the two.
+            </p>
+            <h4>Conclusion</h4>
+            <p>In this paper, we introduce effective design choices of generalizable multimodal representation learning for text-to-music retrieval. For the first time, we reveal relationship between text representation and retrieval performance through systematic experiments. Based on the finding, we propose efficient stochastic text representation. The proposed stochastic text representation show robust performance in tag-based, caption-based, and zero-shot query retrieval cases and state-of-the-art performance on three datasets.
+            </p>
+        </main>
+        <div class="footer"></div>
+            </div>
+    </body>
+</html>
