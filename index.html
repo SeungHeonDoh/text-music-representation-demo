@@ -32,7 +32,12 @@
             margin-bottom: 10px;
             line-height: 1.7;
         }
-
+        small{
+            font-size: 0.8rem;
+        }
+        b{
+            color: blue;
+        }
         h1 {
             font-size: 5rem;
             line-height: 1.15;
@@ -129,130 +134,19 @@
     
         <main id="main" class="site-main">
             <div class="wrapper">
-                <h3>Toward unified text-music representation learning</h3>
+                <h3>Toward Universal Text-to-Music Retrieval</h3>
                     <pre><code>Toward unified text-music representation learning, ICASSP 2023 (submitted) - SeungHeon Doh, Minz Won, Keunwoo Choi, Juhan Nam
                     </code></pre>
             <p>This project maps <strong>text {tag, caption}</strong> and <strong>music</strong> to the same embedding space.
             The detail of the methodology for building the dataset please refer to our paper.</p>
             <ul>
                 <li><a href="">Paper on Arxiv</a>(will be updated)</li>
-                <li><a href="">Implementation Code</a></li>
-                <li><a href="">Dataset Code</a></li>
-                <li><a href="">Pre-trained model on Zenodo</a></li>
-                <li><a href="">Dataset split on Zenodo</a></li>
+                <li><a href="https://github.com/seungheondoh/music-text-representation">Implementation Code</a></li>
+                <li><a href="https://github.com/seungheondoh/msd-subsets">Dataset Code</a></li>
+                <li><a href="https://zenodo.org/record/7322135">Pre-trained model on Zenodo</a></li>
+                <li><a href="https://github.com/seungheondoh/msu-benchmark">Downstream benchmark</a></li>
             </ul>
-            <h4>Abstract</h4>
-                <p>This paper introduces effective design choices of unified multimodal representation learning for text-to-music retrieval. We propose a benchmark that includes ten downstream tasks, carefully review existing approaches through a holistic evaluation, then summarize our findings to deliver reusable insights. We found that tag-level and caption-level text representations are helpful for single-query and multi-query music retrieval, respectively. Thus we leverage both advantages by using a stochastic sampling method. Also, we found that contrastive-based models show more robust performance for unseen query retrieval and probing tasks. Based on these findings, the proposed approach achieves state-of-the-art performance across different music semantic understanding tasks.
-                </p>
-            
-            
-            <h4>Demo</h4>
-                <p> The music pool in the demo was a test-set of the ECALS dataset. All samples were not used in the training phase. For space reasons, we compare tag, caption and stochastic representations using the contrastive framework.
-                </p>
-                <p><strong>The key message of the demo is:</strong> the stochastic model shows robust search performance for tag, caption, and unseen queries. Contrary to this, the caption model has poor search performance for low popular specific instruments, such as banjo. The tag model is difficult to search for combinations in various semantics such as fusion jazz with synth, bass, drums, and saxophone.</p>
-                <hr/>
-                <p>Stochastic based Model (Contrastive-BERT-Stochastic)</p>
-                <table>
-                    <tr>
-                        <th> Text Query </th>
-                        <th> Similar Music 1 </th>
-                        <th> Similar Music 2 </th>
-                        <th> Similar Music 3 </th>
-                    </tr>
-                    <tr> 
-                        <th> jazz (tag query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/jazz.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/jazz (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/jazz (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                    <tr> 
-                        <th> banjo (tag query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                    <tr> 
-                        <th> fusion jazz with synth, bass, </br> drums, saxophone (caption query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/mq.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/mq (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/mq (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                    <tr> 
-                        <th> music for meditation or </br> listen to in the forest (unseen query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/zs.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/zs (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/zs (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                </table>
-                <hr/>
-                <p>Caption based Model (Contrastive-BERT-Caption)</p>
-                <table>
-                    <tr>
-                        <th> Text Query </th>
-                        <th> Similar Music 1 </th>
-                        <th> Similar Music 2 </th>
-                        <th> Similar Music 3 </th>
-                    </tr>
-                    <tr> 
-                        <th> jazz (tag query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/jazz.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/jazz (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/jazz (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                    <tr> 
-                        <th> banjo (tag query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                    <tr> 
-                        <th> fusion jazz with synth, bass, </br> drums, saxophone (caption query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                    <tr> 
-                        <th> music for meditation or </br> listen to in the forest (unseen query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/zs.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/zs (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/zs (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                </table>
-                <hr/>
-                <p>Tag based Model (Contrastive-BERT-Tag)</p>
-                <table>
-                    <tr>
-                        <th> Text Query </th>
-                        <th> Similar Music 1 </th>
-                        <th> Similar Music 2 </th>
-                        <th> Similar Music 3 </th>
-                    </tr>
-                    <tr> 
-                        <th> jazz (tag query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/jazz.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/jazz (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/jazz (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                    <tr> 
-                        <th> banjo (tag query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                    <tr> 
-                        <th> fusion jazz with synth, bass, </br> drums, saxophone (caption query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/mq.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/mq (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/mq (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                    <tr> 
-                        <th> music for meditation or </br> listen to in the forest (unseen query) </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/zs.mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/zs (1).mp3" type="audio/mpeg"></audio> </th>
-                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/zs (2).mp3" type="audio/mpeg"></audio> </th>
-                    </tr>
-                </table>
-            <hr/>
+
             <h4>Motivation</h4>
             <p>
             The text-music retrieval systems need to cover both tag-based and caption-based queries. 
@@ -270,19 +164,173 @@
                 <li>For caption query (Specifically), use BERT text encoder. </a></li>
             </ul>
             
+            <h4>Demo</h4>
+                <p> The music pool in the demo was a test-set of the ECALS dataset. All samples were not used in the training phase. For space reasons, we compare tag, caption and stochastic representations using the contrastive framework.
+                </p>
+                <p><strong>The key message of the demo is:</strong> the stochastic model shows robust search performance for tag, caption, and unseen queries. Contrary to this, the caption model has poor search performance for low popular specific instruments, such as banjo. The tag model is difficult to search for combinations in various semantics such as fusion jazz with synth, bass, drums, and saxophone.</p>
+                <hr/>
+
+                <p><b>fusion jazz with synth, bass, drums, saxophone</b> (Caption Query)</p>
+                <table>
+                    <tr>
+                        <th> Model </th>
+                        <th> Similar Music 1 </th>
+                        <th> Similar Music 2 </th>
+                        <th> Similar Music 3 </th>
+                    </tr>
+                    <tr> 
+                        <th> Contrastive-BERT-Tag </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/mq.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/mq (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/mq (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> </th>
+                        <th> <small>exuberant, swing, rollicking, amiable good natured, jazz, piano blues, big band, hanging out, joyous, tgif, late night, playful, partying, oldies</small> </th>
+                        <th> <small>energetic, exuberant, passionate, post bop, jazz, freewheeling, jazz instrument, trumpet jazz, elegant, playful, stylish</small> </th>
+                        <th> <small>hard bop, jazz, jazz instrument, strong, lively, saxophone jazz, nervous jittery, swinging</small> </th>
+                    </tr>
+                    <tr> 
+                        <th> Contrastive-BERT-Caption </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> </th>
+                        <th> <small>sophisticated, refined, soul, pop rock, amiable good natured, laid back mellow, jazz, contemporary pop rock, chill, synth pop, stylish, dance rock, punk new wave, new wave, ...</small> </th>
+                        <th> <small>funky, laid back mellow, smooth jazz, acid jazz, post bop, slick, jazz, lively, cool, funk, jazz funk, hanging out, fusion, celebratory, stylish, soul jazz, ...</small> </th>
+                        <th> <small>funk, rnb</small> </th>
+                    </tr>
+                    <tr> 
+                        <th> Contrastive-BERT-Stochastic </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/mq.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/mq (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/mq (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> </th>
+                        <th> <small>energetic, exuberant, urban, rollicking, confident, gutsy, sweet, happy, sexual, brash, funk, warm, rousing, joyous, rnb, quiet storm, boisterous, tgif, celebratory, playful, partying, cheerful, ...</small> </th>
+                        <th> <small>jazz, strong, lively, funk, jazz funk, rnb, fusion, restrained, crossover jazz</small> </th>
+                        <th> <small>energetic, soul, pop rock, passionate, rollicking, amiable good natured, confident, laid back mellow, latin rock, freewheeling, funk, rousing, hanging out, rnb, summer, comfort, 70s, celebratory, ...</small> </th>
+                    </tr>
+                </table>
+                <hr/>
+
+                <p><b>Banjo</b> (Tag Query)</p>
+                <table>
+                    <tr>
+                        <th> Model </th>
+                        <th> Similar Music 1 </th>
+                        <th> Similar Music 2 </th>
+                        <th> Similar Music 3 </th>
+                    </tr>
+                    <tr> 
+                        <th> Contrastive-BERT-Tag </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> </th>
+                        <th> <small>exuberant, swing, rollicking, amiable good natured, jazz, piano blues, big band, hanging out, joyous, tgif, late night, playful, partying, oldies</small> </th>
+                        <th> <small>energetic, exuberant, passionate, post bop, jazz, freewheeling, jazz instrument, trumpet jazz, elegant, playful, stylish</small> </th>
+                        <th> <small>hard bop, jazz, jazz instrument, strong, lively, saxophone jazz, nervous jittery, swinging</small> </th>
+                    </tr>
+                    <tr> 
+                        <th> Contrastive-BERT-Caption </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> </th>
+                        <th> <small>regional blues, blues</small> </th>
+                        <th> <small>blues</small> </th>
+                        <th> <small>afrobeat, jazz, funk, 70s, acoustic</small> </th>
+                    </tr>
+                    <tr> 
+                        <th> Contrastive-BERT-Stochastic </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> </th>
+                        <th> <small>contemporary folk, delicate, gentle, drinking, light, cathartic, banjo, somber, earthy, the great outdoors, soothing, comfort, ....</small> </th>
+                        <th> <small>maverick, searching, passionate, reserved, reflection, contemporary folk, autumnal, rustic, intimate, folk, autumn, bittersweet, acoustic, ...</small> </th>
+                        <th> <small>weary, contemporary folk, delicate, gentle, drinking, light, cathartic, banjo, rustic, intimate, folk, autumn, bittersweet, acoustic, ...</small> </th>
+                    </tr>
+                </table>
+                <hr/>
+
+                <p><b>Music for meditation or listen to in the forest</b> (Unseen Query)</p>
+                <table>
+                    <tr>
+                        <th> Model </th>
+                        <th> Similar Music 1 </th>
+                        <th> Similar Music 2 </th>
+                        <th> Similar Music 3 </th>
+                    </tr>
+                    <tr> 
+                        <th> Contrastive-BERT-Tag </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/tag/banjo (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> </th>
+                        <th> <small>pop rock, beautiful, stagenscreen</small> </th>
+                        <th> <small>classical, folk</small> </th>
+                        <th> <small>alternative indie rock, solitude, pop rock, yearning, intense, earnest, introspection, atmospheric...</small> </th>
+                    </tr>
+                    <tr> 
+                        <th> Contrastive-BERT-Caption </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> </th>
+                        <th> <small>yearning, intense, passionate, experimental rock, whimsical, cathartic, indie pop, wistful, ambient, summery, the creative side, post rock,...</small> </th>
+                        <th> <small>indie</small> </th>
+                        <th> <small>alternative indie rock, pop rock, experimental rock, avant garde, ambient</small> </th>
+                    </tr>
+                    <tr> 
+                        <th> Contrastive-BERT-Stochastic </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo.mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo (1).mp3" type="audio/mpeg"></audio> </th>
+                        <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/stochastic/banjo (2).mp3" type="audio/mpeg"></audio> </th>
+                    </tr>
+                    <tr> 
+                        <th> </th>
+                        <th> <small>pop rock, beautiful, indie</small> </th>
+                        <th> <small>traditional folk, earnest, literate, intimate, reflective, folk, plaintive, country</small> </th>
+                        <th> <small>pop rock, electronic, darkwave, ethereal</small> </th>
+                    </tr>
+                </table>
+                <hr/>
+
+            
+            <h4>Abstract</h4>
+            <p>This paper introduces effective design choices of unified multimodal representation learning for text-to-music retrieval. We propose a benchmark that includes ten downstream tasks, carefully review existing approaches through a holistic evaluation, then summarize our findings to deliver reusable insights. We found that tag-level and caption-level text representations are helpful for single-query and multi-query music retrieval, respectively. Thus we leverage both advantages by using a stochastic sampling method. Also, we found that contrastive-based models show more robust performance for unseen query retrieval and probing tasks. Based on these findings, the proposed approach achieves state-of-the-art performance across different music semantic understanding tasks.
+            </p>
+        
+        
+            
             <h4>What is stochastic text representations?</h4>
             <p>
             From our empirical study, we find that there is a strong association between text representation (train stage) and text query types (test stage). 
             As somewhat obviously, the model works better when the input forms during the training phase and test phase are homogeneous, there are no references studying the relationship between text representation and retrieval performance. 
-            To use the advantages of both, we propose a stochastic text representation. During the training stage, we select <b>K</b> words from <b>L</b> length text caption. At this time, <b>K</b> is uniformly randomly sampled among integer numbers from <b>1</b> (tag length) to <b>L</b> (caption length). Unlike the dropout method, which determines the length by probability value, stochastic sampling has a dynamic input length.
+            To use the advantages of both, we propose a stochastic text representation. During the training stage, we select <strong>K</strong> words from <strong>L</strong> length text caption. At this time, <strong>K</strong> is uniformly randomly sampled among integer numbers from <b>1</b> (tag length) to <b>L</b> (caption length). Unlike the dropout method, which determines the length by probability value, stochastic sampling has a dynamic input length.
             </p>
             <img class="blog_contents" src="assets/img/sampler.png" alt="framework"/> 
 
             <h4>What is contrastive loss?</h4>
             <p>
             The core idea of contrastive-based models is to reduce the distance between positive sample pairs while increasing the distance between negative sample pairs. 
-            Unlike triplet-based models, contrastive-based models can utilize a large number of negative samples that exist in a mini batch <b>N</b>. 
-            During training, the audio and text encoders are jointly trained to maximize the similarity between <b>N</b> positive pairs of (music, text) associations while minimizing the similarity for negative pairs. 
+            Unlike triplet-based models, contrastive-based models can utilize a large number of negative samples that exist in a mini batch <strong>N</strong>. 
+            During training, the audio and text encoders are jointly trained to maximize the similarity between <strong>N</strong> positive pairs of (music, text) associations while minimizing the similarity for negative pairs. 
             This is known as multi-modal version of InfoNCE loss.
             </p>
 
@@ -303,7 +351,7 @@
 
             <h4>Results</h4>
             <p>
-            Table show the tag and caption-based retrieval results. The stochastic representation model achieves competitive results in both tasks. In caption-based retrieval, it outperforms the caption representation model, but in tag-based retrieval, it performs closely to the tag representation model. This is because the dynamic length text representation encompasses both tag and caption embedding space. 
+            Table show the tag and caption-based retrieval results. The stochastic representation model achieves competitive results in both tasks. In caption-based retrieval, it outperforms the caption representation model, but in tag-based retrieval, it performs closely to the tag representation model. This is because the dynamic length text representation encompasses both tag and caption embedding space. See our paper for more results on different benchmarks, including MTAT, MTG-Jamendo, FMA, GTZAN, Emotify, KVT.
             </p>
             <img class="blog_contents" src="assets/img/table.png" alt="table"/> 
 
