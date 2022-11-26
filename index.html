@@ -138,7 +138,7 @@
                     <pre><code>Toward unified text-music representation learning, ICASSP 2023 (submitted) - SeungHeon Doh, Minz Won, Keunwoo Choi, Juhan Nam
                     </code></pre>
             <p>This project maps <strong>text {tag, caption}</strong> and <strong>music</strong> to the same embedding space.
-            The detail of the methodology for building the dataset please refer to our paper.</p>
+                For the details of the methodology for building the dataset, please refer to our paper.</p>
             <ul>
                 <!-- <li><a href="">Paper on Arxiv</a>(will be updated)</li> -->
                 <li>Paper on Arxiv (will be updated)</li>
@@ -150,14 +150,12 @@
 
             <h4>Motivation</h4>
             <p>
-            The text-music retrieval systems need to cover both tag-based and caption-based queries. 
-            For example, ordinary listeners use a single tag-based query to search a wide area in music libraries. Music creators may use caption-based queries to search a specific area in music libraries. 
-            Content creators want music that matches the atmosphere of their media content, such as videos and pictures. Therefore, a content description (less musical context) is used as a query (unseen).
+                Generalizable text-based music retrieval systems need to cover both tag-based and caption-based queries. For example, ordinary listeners use simple tag-based queries to explore music libraries. Music creators may use caption-based queries to retrieve more specific types of music. Content creators use content descriptions (less musical and often include unseen tags) to retrieve suitable music that matches their media content, such as photos and videos. 
             </p>
             <img class="blog_contents" src="assets/img/main.png" alt="text_to_music"/> 
             <p>
-            This paper introduces effective design choices of unified multimodal representation learning for text-to-music retrieval. 
-            Our reusable idea for framework design choice is as follows: 
+            This paper introduces effective design choices of universal multi-modal representation learning for text-to-music retrieval. 
+            Our reusable insights are summarized as follows:
             </p>
             <ul>
                 <li>For tags and caption query, use stochastic text representations. </li>
