@@ -137,11 +137,11 @@
                 <h3>Toward Universal Text-to-Music Retrieval</h3>
                     <pre><code>Toward unified text-music representation learning, ICASSP 2023 (submitted) - SeungHeon Doh, Minz Won, Keunwoo Choi, Juhan Nam
                     </code></pre>
-            <p>This project maps <strong>text {tag, caption}</strong> and <strong>music</strong> to the same embedding space.
+            <p>This project maps <strong>text {tag, sentence}</strong> and <strong>music</strong> to the same embedding space.
                 For the details of the methodology for building the dataset, please refer to our paper.</p>
             <ul>
                 <!-- <li><a href="">Paper on Arxiv</a>(will be updated)</li> -->
-                <li>Paper on Arxiv (will be updated)</li>
+                <li><a href="https://arxiv.org/abs/2211.14558">Paper on Arxiv</a></li>
                 <li><a href="https://github.com/seungheondoh/music-text-representation">Implementation Code</a></li>
                 <li><a href="https://github.com/seungheondoh/msd-subsets">Dataset Code</a></li>
                 <li><a href="https://zenodo.org/record/7322135">Pre-trained model on Zenodo</a></li>
@@ -150,7 +150,7 @@
 
             <h4>Motivation</h4>
             <p>
-                Generalizable text-based music retrieval systems need to cover both tag-based and caption-based queries. For example, ordinary listeners use simple tag-based queries to explore music libraries. Music creators may use caption-based queries to retrieve more specific types of music. Content creators use content descriptions (less musical and often include unseen tags) to retrieve suitable music that matches their media content, such as photos and videos. 
+                Generalizable text-based music retrieval systems need to cover both tag-based and sentence-based queries. For example, ordinary listeners use simple tag-based queries to explore music libraries. Music creators may use sentence-based queries to retrieve more specific types of music. Content creators use content descriptions (less musical and often include unseen tags) to retrieve suitable music that matches their media content, such as photos and videos. 
             </p>
             <img class="blog_contents" src="assets/img/main.png" alt="text_to_music"/> 
             <p>
@@ -158,18 +158,18 @@
             Our reusable insights are summarized as follows:
             </p>
             <ul>
-                <li>For tags and caption query, use stochastic text representations. </li>
+                <li>For tags and sentence query, use stochastic text representations. </li>
                 <li>For robust to unseen query, use contrastive loss. </a></li>
-                <li>For caption query (Specifically), use BERT text encoder. </a></li>
+                <li>For sentence query (Specifically), use BERT text encoder. </a></li>
             </ul>
             
             <h4>Demo</h4>
-                <p> The music pool in the demo was a test-set of the ECALS dataset. All samples were not used in the training phase. For space reasons, we compare tag, caption and stochastic representations using the contrastive framework.
+                <p> The music pool in the demo was a test-set of the ECALS dataset. All samples were not used in the training phase. For space reasons, we compare tag, sentence and stochastic representations using the contrastive framework.
                 </p>
-                <p><strong>The key message of the demo is:</strong> the stochastic model shows robust search performance for tag, caption, and unseen queries. Contrary to this, the caption model has poor search performance for low popular specific instruments, such as banjo. The tag model is difficult to search for combinations in various semantics such as fusion jazz with synth, bass, drums, and saxophone.</p>
+                <p><strong>The key message of the demo is:</strong> the stochastic model shows robust search performance for tag, sentence, and unseen queries. Contrary to this, the sentence model has poor search performance for low popular specific instruments, such as banjo. The tag model is difficult to search for combinations in various semantics such as fusion jazz with synth, bass, drums, and saxophone.</p>
                 <hr/>
 
-                <p><b>fusion jazz with synth, bass, drums, saxophone</b> (Caption Query)</p>
+                <p><b>fusion jazz with synth, bass, drums, saxophone</b> (Sentence Query)</p>
                 <table>
                     <tr>
                         <th> Model </th>
@@ -190,7 +190,7 @@
                         <th> <small>energetic, sophisticated, day driving, exuberant, searching, bright, bravado, intense, passionate, rollicking, confident, hard bop, ...</small> </th>
                     </tr>
                     <tr> 
-                        <th> Contrastive-BERT-Caption </th>
+                        <th> Contrastive-BERT-Sentence </th>
                         <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq.mp3" type="audio/mpeg"></audio> </th>
                         <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq (1).mp3" type="audio/mpeg"></audio> </th>
                         <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/mq (2).mp3" type="audio/mpeg"></audio> </th>
@@ -237,7 +237,7 @@
                         <th> <small>weary, passionate, reserved, reflection, contemporary folk, delicate, banjo, somber, earthy, autumnal, rustic, intimate, folk, acoustic, ...</small> </th>
                     </tr>
                     <tr> 
-                        <th> Contrastive-BERT-Caption </th>
+                        <th> Contrastive-BERT-Sentence </th>
                         <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo.mp3" type="audio/mpeg"></audio> </th>
                         <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (1).mp3" type="audio/mpeg"></audio> </th>
                         <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/banjo (2).mp3" type="audio/mpeg"></audio> </th>
@@ -284,7 +284,7 @@
                         <th> <small>pop rock, melancholy, dark, psychedelic</small> </th>
                     </tr>
                     <tr> 
-                        <th> Contrastive-BERT-Caption </th>
+                        <th> Contrastive-BERT-Sentence </th>
                         <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/zs.mp3" type="audio/mpeg"></audio> </th>
                         <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/zs (1).mp3" type="audio/mpeg"></audio> </th>
                         <th> <audio controls id="player" onplay="pauseOthers(this);"><source src="assets/audios/caption/zs (2).mp3" type="audio/mpeg"></audio> </th>
@@ -312,7 +312,7 @@
 
             
             <h4>Abstract</h4>
-            <p>This paper introduces effective design choices of unified multimodal representation learning for text-to-music retrieval. We propose a benchmark that includes ten downstream tasks, carefully review existing approaches through a holistic evaluation, then summarize our findings to deliver reusable insights. We found that tag-level and caption-level text representations are helpful for single-query and multi-query music retrieval, respectively. Thus we leverage both advantages by using a stochastic sampling method. Also, we found that contrastive-based models show more robust performance for unseen query retrieval and probing tasks. Based on these findings, the proposed approach achieves state-of-the-art performance across different music semantic understanding tasks.
+            <p>This paper introduces effective design choices of unified multimodal representation learning for text-to-music retrieval. We propose a benchmark that includes ten downstream tasks, carefully review existing approaches through a holistic evaluation, then summarize our findings to deliver reusable insights. We found that tag-level and sentence-level text representations are helpful for single-query and multi-query music retrieval, respectively. Thus we leverage both advantages by using a stochastic sampling method. Also, we found that contrastive-based models show more robust performance for unseen query retrieval and probing tasks. Based on these findings, the proposed approach achieves state-of-the-art performance across different music semantic understanding tasks.
             </p>
         
         
@@ -321,7 +321,7 @@
             <p>
             From our empirical study, we find that there is a strong association between text representation (train stage) and text query types (test stage). 
             As somewhat obviously, the model works better when the input forms during the training phase and test phase are homogeneous, there are no references studying the relationship between text representation and retrieval performance. 
-            To use the advantages of both, we propose a stochastic text representation. During the training stage, we select <strong>K</strong> words from <strong>L</strong> length text caption. At this time, <strong>K</strong> is uniformly randomly sampled among integer numbers from <b>1</b> (tag length) to <b>L</b> (caption length). Unlike the dropout method, which determines the length by probability value, stochastic sampling has a dynamic input length.
+            To use the advantages of both, we propose a stochastic text representation. During the training stage, we select <strong>K</strong> words from <strong>L</strong> length text sentence. At this time, <strong>K</strong> is uniformly randomly sampled among integer numbers from <strong>1</strong> (tag length) to <strong>L</strong> (sentence length). Unlike the dropout method, which determines the length by probability value, stochastic sampling has a dynamic input length.
             </p>
             <img class="blog_contents" src="assets/img/sampler.png" alt="framework"/> 
 
@@ -350,18 +350,18 @@
 
             <h4>Results</h4>
             <p>
-            Table show the tag and caption-based retrieval results. The stochastic representation model achieves competitive results in both tasks. In caption-based retrieval, it outperforms the caption representation model, but in tag-based retrieval, it performs closely to the tag representation model. This is because the dynamic length text representation encompasses both tag and caption embedding space. See our paper for more results on different benchmarks, including MTAT, MTG-Jamendo, FMA, GTZAN, Emotify, KVT.
+            Table show the tag and sentence-based retrieval results. The stochastic representation model achieves competitive results in both tasks. In sentence-based retrieval, it outperforms the sentence representation model, but in tag-based retrieval, it performs closely to the tag representation model. This is because the dynamic length text representation encompasses both tag and sentence embedding space. See our paper for more results on different benchmarks, including MTAT, MTG-Jamendo, FMA, GTZAN, Emotify, KVT.
             </p>
             <img class="blog_contents" src="assets/img/table.png" alt="table"/> 
 
             <h4>Visualization</h4>
             <img src="assets/img/viz.png" width="50%" style="float: right;"/>
             <p>
-                MultiModal embedding spaces are projected to a 2D space using uniform manifold approximation and projection (UMAP). We fit UMAP with music, tag, caption embeddings, then projected all embeddings into the 2D space. For each dataset, 1000 tag-caption pairs and 1054 tags used for evaluation were used.
-                The first row uses a triplet framework with GloVe model. The second row uses a same triplet framework. with BERT model The last row uses a contrastive framework with BERT model. The contrastive model shows a more significant semantic gap than the other models. However, compared with the above results, it is difficult to see the relationship between the semantic gap and performance. Compared with the triplet, the stochastic model shows a smaller semantic gap than other tag and caption models, and we interpret that each modality is mixed up. In the second column, the caption-based model, the interesting part is that tag embeddings are isolated. This supports the example in the table above where caption models showed low performance in tag-based retrieval. Contrary to this, caption and tag are mixed up in tag-based model. However, since tags are a component of caption embedding, we do not assume that the model captures the relationship between the two.
+                MultiModal embedding spaces are projected to a 2D space using uniform manifold approximation and projection (UMAP). We fit UMAP with music, tag, sentence embeddings, then projected all embeddings into the 2D space. For each dataset, 1000 tag-caption pairs and 1054 tags used for evaluation were used.
+                The first row uses a triplet framework with GloVe model. The second row uses a same triplet framework. with BERT model The last row uses a contrastive framework with BERT model. The contrastive model shows a more significant semantic gap than the other models. However, compared with the above results, it is difficult to see the relationship between the semantic gap and performance. Compared with the triplet, the stochastic model shows a smaller semantic gap than other tag and sentence models, and we interpret that each modality is mixed up. In the second column, the sentence-based model, the interesting part is that tag embeddings are isolated. This supports the example in the table above where sentence models showed low performance in tag-based retrieval. Contrary to this, sentence and tag are mixed up in tag-based model. However, since tags are a component of sentence embedding, we do not assume that the model captures the relationship between the two.
             </p>
             <h4>Conclusion</h4>
-            <p>In this paper, we introduce effective design choices of generalizable multimodal representation learning for text-to-music retrieval. For the first time, we reveal relationship between text representation and retrieval performance through systematic experiments. Based on the finding, we propose efficient stochastic text representation. The proposed stochastic text representation show robust performance in tag-based, caption-based, and zero-shot query retrieval cases and state-of-the-art performance on three datasets.
+            <p>In this paper, we introduce effective design choices of generalizable multimodal representation learning for text-to-music retrieval. For the first time, we reveal relationship between text representation and retrieval performance through systematic experiments. Based on the finding, we propose efficient stochastic text representation. The proposed stochastic text representation show robust performance in tag-based, sentence-based, and zero-shot query retrieval cases and state-of-the-art performance on three datasets.
             </p>
         </main>
         <div class="footer"></div>
